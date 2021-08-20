@@ -40,6 +40,7 @@ const Label = styled.div`
     font-size: ${variables.FONT_SIZE.SMALL};
     font-weight: ${variables.FONT_WEIGHT.DEMI_BOLD};
     color: ${props => props.theme.TYPE_DARK_GREY};
+    overflow: hidden;
 `;
 
 const CategoryButtonNode = styled(NodeButton)`
@@ -51,9 +52,11 @@ const CategoryButtonNode = styled(NodeButton)`
 
 type GuideNodeProps = {
     node: Node;
+    className?: string;
+    description?: React.ReactNode;
 };
 
-const GuideNode = ({ node }: GuideNodeProps) => {
+const GuideNode = ({ node, className, description }: GuideNodeProps) => {
     const theme = useTheme();
     const analytics = useAnalytics();
 
@@ -76,11 +79,16 @@ const GuideNode = ({ node }: GuideNodeProps) => {
         });
     };
 
-    const label = <Label>{getNodeTitle(node, language)}</Label>;
+    const label = (
+        <Label>
+            {getNodeTitle(node, language)}
+            {description}
+        </Label>
+    );
 
     if (node.type === 'page') {
         return (
-            <PageNodeButton onClick={() => navigateToNode(node)}>
+            <PageNodeButton onClick={() => navigateToNode(node)} className={className}>
                 <PageNodeButtonIcon icon="ARTICLE" size={20} color={theme.TYPE_LIGHT_GREY} />
                 {label}
             </PageNodeButton>
@@ -89,7 +97,9 @@ const GuideNode = ({ node }: GuideNodeProps) => {
 
     if (node.type === 'category') {
         return (
-            <CategoryButtonNode onClick={() => navigateToNode(node)}>{label}</CategoryButtonNode>
+            <CategoryButtonNode onClick={() => navigateToNode(node)} className={className}>
+                {label}
+            </CategoryButtonNode>
         );
     }
 

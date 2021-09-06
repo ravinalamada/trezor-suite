@@ -355,9 +355,15 @@ export const getPhysicalDeviceCount = (devices: Device[]) => {
     return uniqueIds.size;
 };
 
-export const parseFirmwareChangelog = (firmwareRelease: TrezorDevice['firmwareRelease']) => {
+export const parseFirmwareChangelog = (
+    features: TrezorDevice['features'],
+    firmwareRelease: TrezorDevice['firmwareRelease'],
+) => {
+    const supportIntermediary = features?.major_version === 1;
     if (!firmwareRelease?.changelog || firmwareRelease?.changelog?.length === 0) return null;
-    const changelogs = firmwareRelease.changelog;
+    // Generate latest FW changelog if device has intermediary support
+    const latestChangelog = [firmwareRelease.latest];
+    const changelogs = supportIntermediary ? latestChangelog : firmwareRelease.changelog;
 
     // Default changelog format is just a long string where individual changes are separated by "*" symbol.
 

@@ -98,7 +98,10 @@ const FirmwareOffer = ({ device, customFirmware }: Props) => {
     ) : (
         getFwUpdateVersion(device)
     );
-    const parsedChangelog = !customFirmware && parseFirmwareChangelog(device.firmwareRelease);
+
+    const parsedChangelog =
+        !customFirmware && parseFirmwareChangelog(device.features, device.firmwareRelease);
+
     const bitcoinOnlyVersion = isBitcoinOnly(device) && ' (bitcoin-only)';
 
     return (

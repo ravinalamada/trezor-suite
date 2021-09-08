@@ -237,7 +237,7 @@ export const selectDevice =
 /**
  * Toggles remembering the given device. I.e. if given device is not remembered it will become remembered
  * and if it is remembered it will be forgotten.
- * @param forceRemember can be set to `true` to remember given device regardless if its current state.
+ * @param forceRemember can be set to `true` to remember given device regardless of its current state.
  *
  * Use `forgetDevice` to forget a device regardless if its current state.
  */
@@ -321,17 +321,18 @@ export const handleDeviceDisconnect =
         if (!selectedDevice) return;
         if (selectedDevice.path !== device.path) return;
 
-        const { devices, firmware, router } = getState();
+        // const { devices, firmware, router } = getState();
+        const { devices } = getState();
 
-        if (
-            ['wait-for-reboot', 'unplug'].includes(firmware.status) ||
-            router.app === 'onboarding'
-        ) {
-            // Suite tried to switch selected device to a remembered (and disconnected) device or another connected device while being in Onboarding process.
-            // We never want to switch to some different remembered device when currently used device disconnects because of loose cable or in order to complete firmware installation
-            dispatch({ type: SUITE.SELECT_DEVICE, payload: undefined });
-            return;
-        }
+        // if (
+        //     ['wait-for-reboot', 'unplug'].includes(firmware.status) ||
+        //     router.app === 'onboarding'
+        // ) {
+        //     // Suite tried to switch selected device to a remembered (and disconnected) device or another connected device while being in Onboarding process.
+        //     // We never want to switch to some different remembered device when currently used device disconnects because of loose cable or in order to complete firmware installation
+        //     dispatch({ type: SUITE.SELECT_DEVICE, payload: undefined });
+        //     return;
+        // }
 
         // selected device is disconnected, decide what to do next
         // device is still present in reducer (remembered or candidate to remember)

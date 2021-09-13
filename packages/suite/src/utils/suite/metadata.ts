@@ -111,6 +111,12 @@ export const urlHashParams = (hash: string) => {
     if (hash[0] === '#') {
         hash = hash.substring(1, hash.length);
     }
+    // todo: trying to track down this issue https://github.com/trezor/trezor-suite/issues/3761
+    // I am not experiencing this
+    if (!hash.split) {
+        console.error('hash.split is not a function: ', hash);
+        return result;
+    }
     const parts = hash.split('&');
     parts.forEach(part => {
         const [key, value] = part.split('=');

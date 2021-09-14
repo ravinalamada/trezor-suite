@@ -10,11 +10,11 @@
     "dependencies": {
         "cypress": "8.3.0",
         "ts-loader": "^9.2.5",
-        "webpack": "^5.46.0"
+        "webpack": "^5.52.1"
     },
     "devDependencies": {
         "@cypress/skip-test": "^2.6.0",
-        "@cypress/webpack-preprocessor": "^5.5.0",
+        "@cypress/webpack-preprocessor": "^5.9.1",
         "cypress-image-snapshot": "^4.0.0",
         "shelljs": "^0.8.4",
         "wait-on": "^5.2.1",

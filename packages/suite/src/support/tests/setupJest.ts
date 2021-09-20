@@ -553,6 +553,15 @@ global.JestMocks = {
 // @ts-ignore
 global.BroadcastChannel = BroadcastChannel;
 
+// @ts-ignore console.log are ignored in tests
+global.console = {
+    log: jest.fn(),
+    warn: jest.fn(),
+    info: jest.fn(),
+    error: jest.fn(),
+    debug: jest.fn(),
+};
+
 // this helps with debugging - find unhandled promise rejections in jest
 
 // process.on('unhandledRejection', (reason, p) => {

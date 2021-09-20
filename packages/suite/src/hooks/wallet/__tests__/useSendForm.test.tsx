@@ -24,6 +24,8 @@ jest.mock('@suite-actions/routerActions', () => ({
 
 jest.mock('react-svg', () => ({ ReactSVG: () => 'SVG' }));
 
+jest.mock('@suite-components/TransactionsGraph', () => <>GRAPH</>);
+
 // render only Translation['id']
 jest.mock('@suite-components/Translation', () => ({ Translation: ({ id }: any) => id }));
 

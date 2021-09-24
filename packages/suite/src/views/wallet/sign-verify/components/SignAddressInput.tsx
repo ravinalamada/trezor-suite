@@ -15,8 +15,17 @@ const HiddenAddressSingleValue = styled(HiddenAddressRow)`
     margin-left: 6px;
 `;
 
-const Option = ({ data, isFocused, ...rest }: any) => (
-    <components.Option data={data} isFocused={isFocused} {...rest}>
+const Option = ({ data, value, isFocused, innerProps, ...rest }: any) => (
+    <components.Option
+        data={data}
+        value={value}
+        isFocused={isFocused}
+        innerProps={{
+            ...innerProps,
+            'data-test': `@sign-verify/sign-address/option/${value}`,
+        }}
+        {...rest}
+    >
         <HiddenAddressRow item={data} variant={isFocused ? 'option-focused' : 'option'} />
     </components.Option>
 );
@@ -85,6 +94,7 @@ const SignAddressInput = ({
                 Input,
                 SingleValue,
             }}
+            data-test="@sign-verify/sign-address"
         />
     );
 };

@@ -43,20 +43,24 @@ type WalletLayoutNavLinkProps = {
     title: ExtendedMessageDescriptor['id'];
     onClick: () => void;
     soon?: boolean;
+    'data-test'?: string;
 };
 
-export const WalletLayoutNavLink = ({ active, title, onClick, soon }: WalletLayoutNavLinkProps) => (
-    <NavLink active={active} onClick={() => !soon && onClick()}>
-        <NavLinkText>
-            {soon && (
-                <Soon>
-                    <Translation id="TR_NAV_SOON" />
-                </Soon>
-            )}
-            <Translation id={title} />
-        </NavLinkText>
-    </NavLink>
-);
+export const WalletLayoutNavLink = (props: WalletLayoutNavLinkProps) => {
+    const { active, title, onClick, soon } = props;
+    return (
+        <NavLink active={active} onClick={() => !soon && onClick()} data-test={props['data-test']}>
+            <NavLinkText>
+                {soon && (
+                    <Soon>
+                        <Translation id="TR_NAV_SOON" />
+                    </Soon>
+                )}
+                <Translation id={title} />
+            </NavLinkText>
+        </NavLink>
+    );
+};
 
 const Navigation = styled.div`
     display: flex;

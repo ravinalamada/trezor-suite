@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@trezor/components';
 import { Translation } from '@suite-components';
 import { transparentize } from 'polished';
-import { useGuide } from '@suite-hooks';
+import { useGuideOpenNode } from '@guide-hooks/useGuideOpenNode';
 import styled from 'styled-components';
 
 const OpenGuideLink = styled.a`
@@ -35,7 +35,7 @@ type OpenGuideFromTooltipProps = {
 };
 
 const OpenGuideFromTooltip = ({ id }: OpenGuideFromTooltipProps) => {
-    const { openNodeById } = useGuide();
+    const { openNodeById } = useGuideOpenNode();
     return (
         <OpenGuideLink onClick={() => openNodeById(id)}>
             <StyledText>

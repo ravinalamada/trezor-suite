@@ -269,7 +269,10 @@ const PassphraseTypeCard = (props: Props) => {
                             )}
                         </IconWrapper>
                         <Col>
-                            <WalletTitle withMargin={props.type === 'hidden'}>
+                            <WalletTitle
+                                withMargin={props.type === 'hidden'}
+                                data-test={props.type === 'hidden' && '@tooltip/passphrase-tooltip'}
+                            >
                                 {props.type === 'hidden' ? (
                                     <Tooltip
                                         title={<Translation id="TR_WHAT_IS_PASSPHRASE" />}

@@ -61,7 +61,7 @@ const withCoinProtocolScheme = (View: React.ComponentType<ViewProps>, props: Str
         }
 
         const isCorrectCoinSendForm =
-            useRouteMatch('/accounts/send') &&
+            useRouteMatch(`${process.env.ASSET_PREFIX || ''}/accounts/send`) &&
             selectedAccount?.network?.symbol === PROTOCOL_TO_SYMBOL[notification.scheme];
 
         return (

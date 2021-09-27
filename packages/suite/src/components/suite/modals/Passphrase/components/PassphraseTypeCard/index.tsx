@@ -278,7 +278,10 @@ const PassphraseTypeCard = (props: Props) => {
                                         title={<Translation id="TR_WHAT_IS_PASSPHRASE" />}
                                         openGuide={{
                                             node: (
-                                                <OpenGuideFromTooltip id="/security/passphrase.md" />
+                                                <OpenGuideFromTooltip
+                                                    selector="@tooltip/openGuide"
+                                                    id="/security/passphrase.md"
+                                                />
                                             ),
                                         }}
                                         content={<Translation id="TR_HIDDEN_WALLET_TOOLTIP" />}

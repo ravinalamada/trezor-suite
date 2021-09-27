@@ -19,7 +19,6 @@ describe('Passphrase', () => {
             .children()
             .children()
             .trigger('mouseenter');
-        cy.getTestElement('@tooltip/openGuide').click({ force: true });
-        // guide should be open
+        cy.hoverTestElement('@tooltip/openGuide').click();
     });
 });
